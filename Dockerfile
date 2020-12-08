@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
-# Create app dir, swith to it and copy local into container
+# Create app dir, switch to it and copy local into container
 RUN mkdir /app
 WORKDIR /app
 COPY ./app /app
