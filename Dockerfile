@@ -7,7 +7,11 @@ ENV PYTHONUNBUFFERED 1
 
 # copy requirements and install in container
 COPY ./requirements.txt /requirements.txt
+RUN apk add --update --no-cache postgresql-client jpeg-dev
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+      gcc libc-dev linux-headers postgresql-dev musl-dev zlib zlib-dev
 RUN pip install -r /requirements.txt
+RUN apk del .tmp-build-deps
 
 # Create app dir, switch to it and copy local into container
 RUN mkdir /app
